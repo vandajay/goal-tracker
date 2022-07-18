@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
   Text,
+  TextInput,
   View,
   Button
 } from 'react-native';
@@ -16,8 +17,18 @@ Root component for a UI that React Native uses
 */
 export default function App() {
   return (
-    <View>
+    <View style={styles.appContainer}>
 
+      {/* Goal Input */}
+      <View>
+        <TextInput placeholder='Enter goal...' />
+        <Button title='Add Goal' />
+      </View>
+
+      {/* Goal List */}
+      <View>
+        <Text>Goal List</Text>
+      </View>
     </View>
   );
 }
@@ -26,5 +37,8 @@ export default function App() {
 Stylesheet Object
 */
 const styles = StyleSheet.create({
+  appContainer: {
+    padding: 50
+  }
 
 });
