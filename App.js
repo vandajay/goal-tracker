@@ -17,7 +17,16 @@ Root component for a UI that React Native uses
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hello World!</Text>
+      <View>
+        <Text
+          style={styles.dummyText}
+        >
+          More text.</Text>
+      </View>
+      <Text
+        style={styles.dummyText}
+      >
+        Hello World!</Text>
       <Button title='TapME'/>
       <StatusBar style="auto" />
     </View>
@@ -35,4 +44,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  dummyText: {
+    margin: 16,
+    borderWidth: 1,
+    borderColor: 'blue',
+    padding: 16
+  }
 });
