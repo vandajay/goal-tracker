@@ -1,10 +1,9 @@
+import { StyleSheet, View, Text } from "react-native";
 
-import { StyleSheet } from 'react-native';
-
-function GoalItem() {
+function GoalItem(prop) {
   return (
     <View style={styles.goalItem}>
-      <Text style={styles.goalText}>{itemData.item.text}</Text>
+      <Text style={styles.goalText}>{prop.text}</Text>
     </View>
   );
 }
@@ -12,13 +11,13 @@ function GoalItem() {
 export default GoalItem;
 
 const styles = StyleSheet.create({
-    goalItem: {
-        margin: 8,
-        padding: 8,
-        borderRadius: 6,
-        backgroundColor: "#5e0acc",
-      },
-      goalText: {
-        color: "white",
-      },
-})
+  goalItem: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#5e0acc",
+  },
+  goalText: {
+    color: "white",
+  },
+});

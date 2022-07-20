@@ -4,14 +4,12 @@ import { StatusBar } from "expo-status-bar";
 // Import components
 import {
   StyleSheet,
-  Text,
-  TextInput,
   View,
-  Button,
   FlatList,
 } from "react-native";
 
 import GoalItem from "./components/GoalItem";
+import GoalInput from "./components/GoalInput";
 
 /*
 App Component
@@ -20,16 +18,11 @@ Root component for a UI that React Native uses
 */
 export default function App() {
   // create state
-  const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
 
   // functions
-  function goalInputHandler(enteredText) {
-    // console.log(enteredText);
-    setEnteredGoalText(enteredText);
-  }
 
-  function addGoalHandler() {
+  function addGoalHandler(enteredGoalText) {
     console.log(enteredGoalText);
 
     // append new goal current list of goals
@@ -37,28 +30,20 @@ export default function App() {
       ...courseGoals,
       // create every item as an object for FlatList
       { text: enteredGoalText, key: Math.random().toString() },
-      ]);
+    ]);
   }
 
   return (
     <View style={styles.appContainer}>
       {/* Goal Input */}
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Enter goal..."
-          // function without '()' only points to the function
-          onChangeText={goalInputHandler}
-        />
-        <Button title="Add Goal" onPress={addGoalHandler} />
-      </View>
+      <GoalInput onAddGoal={addGoalHandler} />
 
-      {/* Goal List... */}
+      {/* Goal List */}
       <View style={styles.goalsContainer}>
         <FlatList
           data={courseGoals}
           renderItem={(itemData) => {
-            return <GoalItem/>;
+            return <GoalItem text={itemData.item.text} />;
           }}
           alwaysBounceVertical={false}
         />
@@ -78,25 +63,9 @@ const styles = StyleSheet.create({
     padding: 50,
     paddingHorizontal: 16,
   },
-  inputContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
-  },
-  textInput: {
-    borderWidth: 1,
-    borderColor: "#cccccc",
-    width: "70%",
-    marginRight: 8,
-  },
   goalsContainer: {
     flex: 5,
   },
-
 });
 
 // /*
