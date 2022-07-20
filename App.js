@@ -23,6 +23,10 @@ export default function App() {
     setModalIsVisible(true);
   }
 
+  function endAddGoalHandler() {
+    setModalIsVisible(false);
+  }
+
   function addGoalHandler(enteredGoalText) {
     console.log(enteredGoalText);
 
@@ -32,6 +36,7 @@ export default function App() {
       // create every item as an object for FlatList
       { text: enteredGoalText, id: Math.random().toString() },
     ]);
+    endAddGoalHandler();
   }
 
   function deleteGoalHandler(id) {
@@ -51,7 +56,11 @@ export default function App() {
       />
 
       {/* Goal Input */}
-      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} />
+      <GoalInput
+        visible={modalIsVisible}
+        onAddGoal={addGoalHandler}
+        onCancel={endAddGoalHandler}
+      />
 
       {/* Goal List */}
       <View style={styles.goalsContainer}>
