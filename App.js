@@ -18,11 +18,11 @@ export default function App() {
           style={styles.textInput}
           placeholder='Enter goal...'
         />
-        <Button title='Add Goal (+)' />
+        <Button title='Add Goal' />
       </View>
 
       {/* Goal List */}
-      <View>
+      <View style={styles.goalsContainer}>
         <Text>Goal List</Text>
       </View>
     </View>
@@ -34,17 +34,27 @@ Stylesheet Object
 */
 const styles = StyleSheet.create({
   appContainer: {
-    padding: 50
+    flex: 1,
+    padding: 50,
+    paddingHorizontal: 16
   },
   inputContainer: {
+    flex: 1,
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: 'center',
+    paddingBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#cccccc'
   },
   textInput: {
     borderWidth: 1,
     borderColor: '#cccccc',
-    width: '80%',
+    width: '70%',
     marginRight: 8
+  },
+  goalsContainer: {
+    flex: 4
   }
 
 });
