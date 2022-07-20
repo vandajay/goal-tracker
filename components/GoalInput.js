@@ -23,7 +23,7 @@ function GoalInput(props) {
         // function without '()' only points to the function
         onChangeText={goalInputHandler}
         // value added to clear text field
-              value={enteredGoalText}
+        value={enteredGoalText}
       />
       <Button title="Add Goal" onPress={addGoalHandler} />
     </View>

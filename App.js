@@ -2,11 +2,7 @@ import { startTransition, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 
 // Import components
-import {
-  StyleSheet,
-  View,
-  FlatList,
-} from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
@@ -29,12 +25,16 @@ export default function App() {
     setCourseGoals((currentCourseGoals) => [
       ...courseGoals,
       // create every item as an object for FlatList
-      { text: enteredGoalText, key: Math.random().toString() },
+      { text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
 
-  function deleteGoalHandler() {
-    console.log('DELETE');
+  function deleteGoalHandler(id) {
+    console.log("DELETE");
+    setCourseGoals((currentCourseGoals) => {
+      // filter returns a new array minus deletion
+      return currentCourseGoals.filter((goal) => goal.id !== id);
+    });
   }
 
   return (
@@ -49,10 +49,14 @@ export default function App() {
           renderItem={(itemData) => {
             return (
               <GoalItem
-              text={itemData.item.text}
-              onDeleteItem={deleteGoalHandler}
-            />
+                text={itemData.item.text}
+                id={itemData.item.id}
+                onDeleteItem={deleteGoalHandler}
+              />
             );
+          }}
+          keyExtractor={(item, index) => {
+            return item.id;
           }}
           alwaysBounceVertical={false}
         />
