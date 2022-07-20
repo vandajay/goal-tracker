@@ -8,8 +8,10 @@ import {
   TextInput,
   View,
   Button,
-  ScrollView,
+  FlatList,
 } from "react-native";
+
+import GoalItem from "./components/GoalItem";
 
 /*
 App Component
@@ -31,7 +33,11 @@ export default function App() {
     console.log(enteredGoalText);
 
     // append new goal current list of goals
-    setCourseGoals((currentCourseGoals) => [...courseGoals, enteredGoalText]);
+    setCourseGoals((currentCourseGoals) => [
+      ...courseGoals,
+      // create every item as an object for FlatList
+      { text: enteredGoalText, key: Math.random().toString() },
+      ]);
   }
 
   return (
@@ -49,18 +55,13 @@ export default function App() {
 
       {/* Goal List... */}
       <View style={styles.goalsContainer}>
-        <ScrollView alwaysBounceVertical={false}>
-          {/* 
-        Always add the key prop in order to add duplicates to map
-
-        iOS must make use of the View wrapper as it has more styling options
-        */}
-          {courseGoals.map((goal) => (
-            <View key={goal} style={styles.goalItem}>
-              <Text style={styles.goalText}>{goal}</Text>
-            </View>
-          ))}
-        </ScrollView>
+        <FlatList
+          data={courseGoals}
+          renderItem={(itemData) => {
+            return <GoalItem/>;
+          }}
+          alwaysBounceVertical={false}
+        />
       </View>
     </View>
   );
@@ -95,15 +96,7 @@ const styles = StyleSheet.create({
   goalsContainer: {
     flex: 5,
   },
-  goalItem: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: "#5e0acc",
-  },
-  goalText: {
-    color: "white",
-  },
+
 });
 
 // /*
