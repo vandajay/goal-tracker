@@ -9,6 +9,15 @@ App Component
 Root component for a UI that React Native uses
 */
 export default function App() {
+// functions
+  function goalInputHandler(enteredText) {
+    console.log(enteredText);
+   };
+  
+  function addGoalHandler() { };
+  
+
+
   return (
     <View style={styles.appContainer}>
 
@@ -17,13 +26,18 @@ export default function App() {
         <TextInput
           style={styles.textInput}
           placeholder='Enter goal...'
+          // function without '()' only points to the function
+          onChangeText={goalInputHandler}
         />
-        <Button title='Add Goal' />
+        <Button
+          title='Add Goal'
+          onPress={addGoalHandler}
+        />
       </View>
 
-      {/* Goal List */}
+      {/* Goal List... */}
       <View style={styles.goalsContainer}>
-        <Text>Goal List</Text>
+        <Text>List of Goals...</Text>
       </View>
     </View>
   );
@@ -43,7 +57,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: 'center',
-    paddingBottom: 20,
+    marginBottom: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#cccccc'
   },
@@ -54,7 +68,7 @@ const styles = StyleSheet.create({
     marginRight: 8
   },
   goalsContainer: {
-    flex: 4
+    flex: 5
   }
 
 });
