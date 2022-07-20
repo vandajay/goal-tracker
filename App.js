@@ -42,12 +42,15 @@ export default function App() {
 
       {/* Goal List... */}
       <View style={styles.goalsContainer}>
-        {/* <Text>List of Goals...</Text> */}
-        {/* Always add the key prop in order to add duplicates to map*/}
+        {/* 
+        Always add the key prop in order to add duplicates to map
+
+        iOS must make use of the View wrapper as it has more styling options
+        */}
         {courseGoals.map((goal) => (
-          <Text style={styles.goalItem} key={goal}>
-            {goal}
-          </Text>
+          <View key={goal} style={styles.goalItem}>
+            <Text style={styles.goalText}>{goal}</Text>
+          </View>
         ))}
       </View>
     </View>
@@ -56,6 +59,8 @@ export default function App() {
 
 /*
 Stylesheet Object
+
+Styles do not cascade inn React Native like in CSS
 */
 const styles = StyleSheet.create({
   appContainer: {
@@ -86,6 +91,8 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 6,
     backgroundColor: "#5e0acc",
+  },
+  goalText: {
     color: "white",
   },
 });
