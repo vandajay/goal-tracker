@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 
 // Import components
@@ -9,12 +10,25 @@ App Component
 Root component for a UI that React Native uses
 */
 export default function App() {
+// create state
+  const [enteredGoalText, setEnteredGoalText] = useState('');
+  const [courseGoals,setCourseGoals] = useState([]);
+
 // functions
   function goalInputHandler(enteredText) {
-    console.log(enteredText);
+    // console.log(enteredText);
+    setEnteredGoalText(enteredText);
    };
   
-  function addGoalHandler() { };
+  function addGoalHandler() { 
+    console.log(enteredGoalText);
+
+    // append new goal current list of goals
+    setCourseGoals(currentCourseGoals => [
+      ...courseGoals,
+      enteredGoalText
+    ]);
+  };
   
 
 
@@ -37,7 +51,9 @@ export default function App() {
 
       {/* Goal List... */}
       <View style={styles.goalsContainer}>
-        <Text>List of Goals...</Text>
+        {/* <Text>List of Goals...</Text> */}
+        {/* Always add the key prop */}
+        {courseGoals.map((goal) => <Text key={goal}>{goal}</Text>)}
       </View>
     </View>
   );
