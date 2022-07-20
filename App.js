@@ -2,7 +2,14 @@ import { startTransition, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 
 // Import components
-import { StyleSheet, Text, TextInput, View, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Button,
+  ScrollView,
+} from "react-native";
 
 /*
 App Component
@@ -42,16 +49,18 @@ export default function App() {
 
       {/* Goal List... */}
       <View style={styles.goalsContainer}>
-        {/* 
+        <ScrollView alwaysBounceVertical={false}>
+          {/* 
         Always add the key prop in order to add duplicates to map
 
         iOS must make use of the View wrapper as it has more styling options
         */}
-        {courseGoals.map((goal) => (
-          <View key={goal} style={styles.goalItem}>
-            <Text style={styles.goalText}>{goal}</Text>
-          </View>
-        ))}
+          {courseGoals.map((goal) => (
+            <View key={goal} style={styles.goalItem}>
+              <Text style={styles.goalText}>{goal}</Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
