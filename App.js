@@ -1,8 +1,8 @@
-import { startTransition, useState } from "react";
+import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 
 // Import components
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, Button } from "react-native";
 
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
@@ -13,10 +13,15 @@ App Component
 Root component for a UI that React Native uses
 */
 export default function App() {
-  // create state
+  // create states
+  const [modalIsVisible, setModalIsVisible] = useState(false);
   const [courseGoals, setCourseGoals] = useState([]);
 
   // functions
+
+  function startAddGoalHandler() {
+    setModalIsVisible(true);
+  }
 
   function addGoalHandler(enteredGoalText) {
     console.log(enteredGoalText);
@@ -39,8 +44,14 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
+      <Button
+        title="Add New Goal"
+        color="#5e0acc"
+        onPress={startAddGoalHandler}
+      />
+
       {/* Goal Input */}
-      <GoalInput onAddGoal={addGoalHandler} />
+      <GoalInput visible={modalIsVisible} onAddGoal={addGoalHandler} />
 
       {/* Goal List */}
       <View style={styles.goalsContainer}>
